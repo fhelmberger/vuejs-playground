@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Testing</title>
+  </head>
+  <body>
+    <h1>Verm&ouml;genspl&auml;ne</h1>
+
+    <div id="vermoegensplaene-stage">
+	    <vermoegensplan v-for="(vp, index) in entries"
+				:key="vp.produkt_gfnr"
+				:vp="vp"
+				:index="index"
+				:prev_vn_nachname="index > 0 ? entries[index - 1].vn_nachname : undefined"
+ 			></vermoegensplan>
+
+    	<button @click="entries = new_entries">Click me</button>
+    </div>
+
+    <script type="text/x-template" id="vermoegensplan-template">
+      <div class="vp">
+        <h2 class="subtitle" v-show="prev_vn_nachname === undefined ? true : vp.vn_nachname !== prev_vn_nachname">{{ vp.vn_nachname }}</h2>
+
+        <h2>{{ vp.produkt_gfnr }} - {{ vp.vn_vorname }} ({{ index }})</h2>
+      </div>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vp.js"></script>
+  </body>
+</html>
